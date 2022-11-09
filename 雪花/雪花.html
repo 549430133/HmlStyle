@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>雪花</title>
+</head>
+<body style="margin: 0">
+    <canvas id="cvs" style="background-color: black">当前浏览器不支持canvas</canvas>
+</body>
+</html>
+<script>
+    const cvs = document.getElementById("cvs");
+    const  ctx = cvs.getContext("2d");
+    //获取窗口宽高
+    const {clientWidth:width,clientHeight:height} = document.documentElement
+    cvs.width = width
+    cvs.height = height
+    ctx.fillStyle = '#fff'
+    //定义雪花数量与位置 map遍历数组
+    const snowflake = Array.from(new Array(400)).map(item => {//为每一个雪花设置属性
+        return {
+            x: Math.random() * width,//x轴位置随机，范围为窗口宽度
+            y: Math.random() * height,
+            step: Math.random() * 3//随机变换速度
+        }
+    })
+    const render = () => {
+        ctx.clearRect(0, 0, width, height)
+        ctx.beginPath()
+        snowflake.forEach(item => {
+            item.y = item.y > height ? 0 :(item.y + item.step)
+            ctx.rect(item.x,item.y,3,3)
+        })
+        ctx.fill()
+        //requestAnimationFrame高频执行，重复执行动画
+        requestAnimationFrame(render)
+    }
+    render()
+</script>
