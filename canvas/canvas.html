@@ -188,17 +188,55 @@
 
     //创建图案样式Patterns  new image()
     //1创建图片地址
-    let img = new Image();
-    img.src = '20200901085806_GHsrH.jpeg';
-    console.log(img.src);
-    //2图片加载完成后，创建图案对象createPatterns()参数一：图片地址，参数二：重复方式：repeat（重复），no-repeat(不重复) repeat-x(水平重复) repeat-y(垂直重复)
-    img.onload = function() {//onload小写
-        let pattern = ctx.createPattern(img,'no-repeat');
-        ctx.fillStyle = pattern;
-        ctx.fillRect(0, 0, 600,400);//起点x轴，起点y轴，终点x轴，终点y轴
-    }
+    // let img = new Image();
+    // img.src = '20200901085806_GHsrH.jpeg';
+    // console.log(img.src);
+    // //2图片加载完成后，创建图案对象createPatterns()参数一：图片地址，参数二：重复方式：repeat（重复），no-repeat(不重复) repeat-x(水平重复) repeat-y(垂直重复)
+    // img.onload = function() {//onload小写
+    //     let pattern = ctx.createPattern(img,'no-repeat');
+    //     ctx.fillStyle = pattern;
+    //     ctx.fillRect(0, 0, 600,400);//起点x轴，起点y轴，终点x轴，终点y轴
+    // }
 
+    //线条样式 line style
+    /*
+    * lineWidth = value  设置线条宽度
+    * lineCap = type  设置线条末端样式
+    * lineJoin = type  设置线条与线条间接合处的样式
+    * miterLimit = value  限制当两条线相交时交接处最大长度
+    * getLineDash()  返回一个包含当前虚线样式，长度的非负偶数的数组
+    * lineDashOffset = value  设置虚线样式的起始偏移量
+    * setLineDash(segments)  设置当前虚线样式
+    * */
+    // ctx.moveTo(200,150)
+    // ctx.lineTo(300,250)
+    // ctx.lineTo(400,150)
+    // ctx.lineWidth = 1 //设置线宽，默认线宽是1px
+    // ctx.lineCap = 'round'//设置线条端点样式，butt平齐 round半圆 square正方形
+    // ctx.lineJoin = 'round'//设置线条交接处，外侧角的样式 round半圆 mitter默认角 bevel折平
+    // ctx.miterLimit = 5//限制线条交接处，内角到外角的最大距离
+    // ctx.setLineDash([10,10])//设置虚线样式，传入一个数组参数，数组中的第一个值是每一段线条的长度，第二个是线条与线条空白的长度，后面还可继续添加参数
+    // ctx.lineDashOffset = 1//设置虚线样式的偏移量
+    // //绘制蚂蚁线
+    // let ind = 0
+    // function render() {
+    //     ctx.clearRect(0,0,600,400)
+    //     ind += 0.1
+    //     if(ind > 20) ind = 0
+    //     ctx.moveTo(200,150)
+    //     ctx.lineTo(300,250)
+    //     ctx.lineTo(400,150)
+    //     ctx.lineWidth = 1 //设置线宽，默认线宽是1px
+    //     ctx.lineCap = 'round'//设置线条端点样式，butt平齐 round半圆 square正方形
+    //     ctx.lineJoin = 'round'//设置线条交接处，外侧角的样式 round半圆 mitter默认角 bevel折平
+    //     ctx.miterLimit = 5//限制线条交接处，内角到外角的最大距离
+    //     ctx.setLineDash([10,10])//设置虚线样式，传入一个数组参数，数组中的第一个值是每一段线条的长度，第二个是线条与线条空白的长度，后面还可继续添加参数
+    //     ctx.lineDashOffset = ind//设置虚线样式的偏移量
+    //     ctx.stroke()
+    //     requestAnimationFrame(render)
+    // }
+    // render()
 
-    // ctx.stroke()
-    // ctx.closePath()
+    ctx.stroke()
+    ctx.closePath()
 </script>
