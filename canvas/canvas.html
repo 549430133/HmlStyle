@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+</head>
+<body>
+    <!--
+        id 标识元素的唯一性
+        width 画布的宽度
+        height 画布的高度
+    -->
+    <canvas id="canvasId" width="600" height="400">
+        <!--当浏览器不支持canvas时，浏览器会把canvas当成普通标签，显示canvas标签中的信息，支持则不显示-->
+        当前浏览器不支持canvas，请下载最新的浏览器
+    </canvas>
+</body>
+</html>
+<script>
+    //获取画布id
+    let canvasid = document.getElementById("canvasId")
+    //获取画笔
+    //判断是否有getcontext
+    if(!canvasid.getContext){
+        console.log('当前浏览器不支持canvas，请下载最新对的浏览器')
+    }
+    let ctx = canvasid.getContext("2d")
+    // ctx.beginPath();
+    //绘制图形 fill填充 rect矩形  可拆分使用 cts.rect > ctx.fill先绘制在填充
+    //绘制矩形(位置x 位置y 宽度 高度)
+    // ctx.fillRect(100,200,300,300)
+    //绘制圆弧 arc(圆心x 圆心y 半径 开始的角度 结束的角度 逆时针/顺时针) Math.PI = 180° 默认顺时针false，设置逆时针时为true
+    // ctx.arc(50,100,50,0,Math.PI,true)
+    //ctx.stroke绘制线
+    // ctx.stroke()
+    //ctx.fill()
+
+    //绘制笑脸
+    //ctx.beginPath开始绘制路径  ctx.closePath结束绘制路径
+    // ctx.beginPath()
+    // ctx.arc(300,100,100,0,Math.PI*2)//x轴300 y轴100 半径100 起始角度0 结束角度90
+    // ctx.stroke()
+    // ctx.closePath()
+    // ctx.beginPath()
+    // ctx.arc(350,80,30,0,Math.PI*2)
+    // ctx.stroke()
+    // ctx.closePath()
+    // ctx.beginPath()
+    // ctx.arc(250,80,30,0,Math.PI*2)
+    // ctx.stroke()
+    // ctx.closePath()
+    // ctx.beginPath()
+    // ctx.arc(300,120,50,0,Math.PI)
+    // ctx.stroke()
+    // ctx.closePath()
+
+    //使用movwto来移动点，实现绘制不连贯的画线
+    // ctx.beginPath()
+    // ctx.arc(300,100,100,0,Math.PI*2)
+    // ctx.moveTo(380,80)
+    // ctx.arc(350,80,30,0,Math.PI*2)
+    // ctx.moveTo(280,80)
+    // ctx.arc(250,80,30,0,Math.PI*2)
+    // ctx.moveTo(350,120)
+    // ctx.arc(300,120,50,0,Math.PI)
+    // ctx.stroke()
+    // ctx.closePath()
+
+    //使用lineTo绘制三角形  lineTo(x y)
+    // ctx.beginPath()
+    // ctx.moveTo(100,100)
+    // ctx.lineTo(100,50)
+    // ctx.lineTo(150,100)
+    // ctx.lineTo(100,100)
+    // ctx.stroke()
+    // ctx.closePath()
+    // //
+
+    // ctx.beginPath()
+    // ctx.moveTo(80,100)
+    // ctx.lineTo(80,50)
+    // ctx.lineTo(30,100)
+    // ctx.lineTo(80,100)
+    // ctx.fill()
+    // ctx.closePath()
+
+    //绘制虚线
+    // ctx.strokeStyle = "red"
+    // ctx.beginPath()
+    // ctx.setLineDash([10])
+    // ctx.moveTo(50,100)
+    // ctx.lineTo(450,100)
+    // ctx.lineTo(300,150)
+    // ctx.stroke()
+
+    //绘制圆弧需要三个点 起点 控制点 终点
+    //使用arcTo绘制圆弧，arcTo绘制圆弧通过moveto设置起点，arcto绘制另外两个点，一共三个点再根据半径绘制圆弧
+    // ctx.moveTo(100,200)//起点
+    // ctx.arcTo(100,150,80,150,25)//x1轴做坐标，y1轴坐标，x2轴坐标，y2轴坐标，圆弧半径
+    // ctx.stroke()
+
+    //绘制二次贝塞尔线 quadraticCurveTo()控制点1x轴，控制点1y轴，终点2x轴，终点点2y轴
+    // ctx.moveTo(200,300)
+    // ctx.quadraticCurveTo(120,300,120,200)
+    // ctx.quadraticCurveTo(120,150,230,150)
+    // ctx.quadraticCurveTo(400,150,400,250)
+    // ctx.quadraticCurveTo(400,300,300,300)
+    // ctx.quadraticCurveTo(300,380,200,380)
+    // ctx.quadraticCurveTo(280,320,200,300)
+
+    //绘制三次贝塞尔曲线bezierCurveTo（）三次贝塞尔曲线有两个控制点
+    // ctx.moveTo(300,200)//起点
+    // ctx.bezierCurveTo(400,100,480,250,300,320)
+    // ctx.bezierCurveTo(120,250,200,100,300,200)
+
+    //封装路径path2d Path2D可以将各种绘制路径保存，当使用时将该封装好的对象名作为参数传入ctx.ctroke()/ctx.fill()
+    // let CurvePath = new Path2D()//封装三次贝尔赛曲线
+    // CurvePath.moveTo(300,200)
+    // CurvePath.bezierCurveTo(400,100,480,250,300,320)
+    // CurvePath.bezierCurveTo(120,250,200,100,300,200)
+    // ctx.stroke(CurvePath)
+    // ctx.fill(CurvePath)
+    // let quadraticPath = new Path2D()
+    // quadraticPath.moveTo(200,300)
+    // quadraticPath.quadraticCurveTo(120,300,120,200)
+    // quadraticPath.quadraticCurveTo(120,150,230,150)
+    // quadraticPath.quadraticCurveTo(400,150,400,250)
+    // quadraticPath.quadraticCurveTo(400,300,300,300)
+    // quadraticPath.quadraticCurveTo(300,380,200,380)
+    // quadraticPath.quadraticCurveTo(280,320,200,300)
+    // ctx.stroke(quadraticPath)
+    // Path2D还可以直接使用SVG字符串的信息保存绘制路径
+    // let SVGstr = new Path2D('M10 10 h 80 v 80 h -80 z')
+    // ctx.stroke(SVGstr)
+
+    //颜色样式控制
+    //strokeStyle 控制图形轮廓颜色
+    // ctx.strokeStyle = 'red'
+    // //fillStyle 控制图形填充颜色
+    // ctx.fillStyle = 'green'
+
+    //线性渐变，径向渐变
+    //线性渐变createLinearGradient() 起点x轴坐标，y轴坐标，终点x轴坐标，y轴坐标
+    // let LinearGradient = ctx.createLinearGradient(200,200,500,500);//LinearGradient线性渐变对象名，可随意起名
+    // //addColorStop()0~1 0开始1结束之间的渐变颜色设置
+    // LinearGradient.addColorStop(0,'red')//参数1：0起点，参数2：渐变颜色
+    // LinearGradient.addColorStop(0.5,'blue')
+    // LinearGradient.addColorStop(1,'green')
+    // ctx.fillStyle = LinearGradient
+    // ctx.fillRect(200,200,300,300)//fillRect填充一个矩形，四个参数：x坐标，y坐标，宽，高
+    //线性渐变颜色动画
+    // let change = 0
+    // function LinearAnime(){
+    //     ctx.clearRect(200,200,500,500)
+    //     change += 0.01
+    //     if(change > 1) change = 0
+    //     let LinearGradient = ctx.createLinearGradient(200,200,500,500);//LinearGradient线性渐变对象名，可随意起名
+    //     //addColorStop()0~1 0开始1结束之间的渐变颜色设置
+    //     LinearGradient.addColorStop(0,'red')//参数1：0起点，参数2：渐变颜色
+    //     LinearGradient.addColorStop(change,'blue')
+    //     LinearGradient.addColorStop(1,'green')
+    //     ctx.fillStyle = LinearGradient
+    //     ctx.fillRect(200,200,300,300)//fillRect填充一个矩形，四个参数：x坐标，y坐标，宽，高
+    //     requestAnimationFrame(LinearAnime)
+    // }
+    // requestAnimationFrame(LinearAnime)
+    //径向渐变
+    // let RadialGradient = ctx.createRadialGradient(300,200,30,250,200,100)
+    // RadialGradient.addColorStop(0,'red')
+    // RadialGradient.addColorStop(1,'green')
+    // ctx.fillStyle = RadialGradient
+    // ctx.fillRect(200,100,300,300)
+    //3d球形
+    // let RadialGradient = ctx.createRadialGradient(250,150,10,300,200,100)
+    // RadialGradient.addColorStop(0,'#ffcccc')
+    // RadialGradient.addColorStop(1,'red')
+    // ctx.fillStyle = RadialGradient
+    // ctx.arc(300,200,100,0,Math.PI*2);
+    // ctx.fill()
+
+    // 圆锥渐变createConicGradient()参数一：渐变角度，参数二：渐变圆点x轴，参数三：渐变圆点y轴
+    // let ConicGradient = ctx.createConicGradient(45,300,200)
+    // ConicGradient.addColorStop(0,'#ffcccc')
+    // ConicGradient.addColorStop(0.5,'green')
+    // ConicGradient.addColorStop(1,'red')
+    // ctx.fillStyle = ConicGradient
+    // ctx.fillRect(0,0,600,400)
+
+    //创建图案样式Patterns  new image()
+    //1创建图片地址
+    let img = new Image();
+    img.src = '20200901085806_GHsrH.jpeg';
+    console.log(img.src);
+    //2图片加载完成后，创建图案对象createPatterns()参数一：图片地址，参数二：重复方式：repeat（重复），no-repeat(不重复) repeat-x(水平重复) repeat-y(垂直重复)
+    img.onload = function() {//onload小写
+        let pattern = ctx.createPattern(img,'no-repeat');
+        ctx.fillStyle = pattern;
+        ctx.fillRect(0, 0, 600,400);//起点x轴，起点y轴，终点x轴，终点y轴
+    }
+
+
+    // ctx.stroke()
+    // ctx.closePath()
+</script>
